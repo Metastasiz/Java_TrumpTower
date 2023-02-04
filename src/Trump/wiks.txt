@@ -1,0 +1,40 @@
+import java.net.*;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
+
+public class ClientforTiffany {
+
+    private DatagramSocket socket;
+    private InetAddress address;
+
+    private byte[] buf;
+
+    public ClientUDP() throws IOException{
+        socket = new DatagramSocket();
+        address = InetAddress.getByName("localhost");
+    }
+
+    public void sendEcho(String msg) throws IOException {
+        buf = msg.getBytes();
+        DatagramPacket packet
+                = new DatagramPacket(buf, buf.length, address, 4445);
+        socket.send(packet);
+
+    }
+
+    public String getEcho() throws IOException{
+        DatagramPacket packet = new DatagramPacket(buf, buf.length);
+        socket.receive(packet);
+        String received = new String(
+                packet.getData(), 0, packet.getLength());
+        return received;
+    }
+
+    public static void main(String[] args) throws IOException {
+        ClientUDP client = new ClientUDP();
+        client.sendEcho("Arse");
+        System.out.println(client.getEcho());
+
+
+    }
+}
