@@ -1,4 +1,4 @@
-Trump Tower Manager - a Personel Property Manager with ASCII GUI using Java
+Trump Tower Manager - a Personel Property Manager with ASCII TUI(text user interface) using Java
 
 Project is made in roughly 7 days during my 2nd semestre from scratch, enjoy :)
 
